@@ -6,12 +6,14 @@ int main() {
 	int choice;
 	int position;
 	int value;
+	int k;
+	int list[10];
 	bool active = true;
 
 	while (active == true) {
 		cout << "Input the choice that matches the operation you wish to test" << endl;
 		cout << "1 - insert\n2 - remove\n3 - findMin\n4 - deleteMin\n5 - increaseKey\n6 - decreaseKey\n7 - isEmpty" <<
-			"\n8 - isFull\n9 - clear\n10 - printHeap\n11 - exit\nChoice: ";
+			"\n8 - isFull\n9 - clear\n10 - printHeap\n11 - BuildHeap\n12 - findKthLargest\n13 - exit\nChoice: ";
 		cin >> choice;
 
 		switch (choice) {
@@ -124,6 +126,52 @@ int main() {
 			break;
 		}
 		case 11: {
+			if (mh.isEmpty()) {
+				for (int i = 1; i < 10; i++) {
+					cout << "Input the " << i << "th element: ";
+					cin >> value;
+
+					list[i] = value;
+				}
+
+				mh.buildHeap(list, 9);
+				cout << "The Heap has been built" << endl;
+			}
+
+			else {
+				cout << "The heap must be empty for the buildHeap operation to be performed" << endl;
+			}
+
+			cout << endl;
+			break;
+		}
+
+		case 12: {
+
+			if (mh.isEmpty()) {
+				for (int i = 1; i < 10; i++) {
+					cout << "Input the " << i << "th element: ";
+					cin >> value;
+
+					list[i] = value;
+				}
+
+				cout << "Input the number k, in which k is the kth largest term i nthe list: ";
+				cin >> k;
+
+				cout << "Kth largest term in your list is: " << mh.findKthLargest(list, 9, k) << endl;
+				mh.clear();
+			}
+
+				else {
+					cout << "The heap must be empty for the findKthLargest operation to be performed" << endl;
+				}
+
+			cout << endl;
+			break;
+		}
+
+		case 13: {
 			active = false;
 			cout << endl;
 			break;

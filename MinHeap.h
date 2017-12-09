@@ -7,10 +7,10 @@ class MinHeap {
 public: 
 	MinHeap();
 
-	void insert(int element); //inserts element into the heap
+	void insert(int element); //inserts element into the heap, takes O(log(n)) time
 
-	int findMin(); //finds and returns the smallest element in the heap
-	int deleteMin(); //deletes the smallest element in the heap and returns it
+	int findMin(); //finds and returns the smallest element in the heap, takes O(1) time
+	int deleteMin(); //deletes the smallest element in the heap and returns it, takes O(log(n)) time
 
 	int remove(int position); //removes elements from a specific position
 
@@ -24,6 +24,8 @@ public:
 
 	void printHeap(); //prints out the contents of the heap
 
+	void buildHeap(int list[], int listSize); //builds the heap from a list of elements, takes O(N) time
+	int findKthLargest(int list[], int listSize, int k); //finds the Kth largest from a given list
 private: 
 
 	void percolateUp(int position); //moves element down in the heap if necessary

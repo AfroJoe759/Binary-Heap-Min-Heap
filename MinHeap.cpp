@@ -162,3 +162,44 @@ void MinHeap::printHeap() {
 
 	cout << endl;
 }
+
+//take a users input of numbers in any order and sets that list to the heap
+//the size of the heap becomes equivilent to the amount of elements
+//starting from the last element in heap, go to its parent and percolate down
+void MinHeap::buildHeap(int list[], int listSize) {
+
+	size = listSize;
+	heap = list;
+
+	for (int i = size / 2; i > 0; i--) {
+		percolateDown(i);
+	}
+}	
+
+int MinHeap::findKthLargest(int list[], int listSize, int k) {
+
+	int kthLargest; //value of kth largest term
+	clear();//empties the heap
+
+	//copies the first k elements of the list into the heap array in any order
+	for (int i = 1; i <= k; i++) {
+		heap[i] = list[i];
+	}
+
+	//calls the build heap function which makes the root the current kthLargest value
+	buildHeap(heap, k);
+
+	//for the rest of the list check to see if any number is greater than the root
+	//if so make the root equal to that number and percolate down
+	//at the end of the loop your root will be the kthLargest number
+	for (int i = k + 1; i <= listSize; i++) {
+		if (heap[1] < list[i]) {
+			heap[1] = list[i];
+			percolateDown(1);
+		}
+	}
+
+	kthLargest = heap[1];
+	
+	return kthLargest;
+}
